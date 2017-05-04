@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="bower_components/vue/dist/vue.js"></script>
+</head>
+<style>
+    #header{
+
+        width: 800px;
+        height:50px;
+        margin: 0 auto;
+        background-color: #4078c0;
+
+    }
+    .one{
+
+      width: 25px;
+        height:25px;
+        /*border:1px solid red;*/
+        float: right;
+        margin: 12px 14px;
+
+    }
+    #header img{
+        width: 25px;
+        height: 25px;
+    }
+
+
+    #body{
+
+        width: 785px;
+        height: 800px;
+        border:1px solid red;
+        margin: 0 auto;
+        margin-top: 20px;
+    }
+    #body a{
+        display: inline-block;
+        width:50%;
+        height:30%;
+    }
+    #body img{
+        width: 100%;
+        height:100%;
+
+    }
+    .b{
+        width:100%;
+        overflow: hidden;
+        border: 1px solid darkgray;
+    }
+    .b span{
+        float: right;
+    }
+
+</style>
+<body>
+
+    <div id="all">
+        <div id="header">
+            <div class="one" @click="jiugongge('list')"><img  src="list.png"></div>
+            <div class="one" @click="jiugongge('grade')"><img src="grade.png"></div>
+        </div>
+
+
+        <div id="body">
+
+            <a v-for="item in imgSrc" :href="item.url" v-show="layout=='list'"><img :src="item.image.large"></a>
+
+            <div class="b" v-for="item in imgSrc" v-show="layout=='grade'">
+                <a :href="item.url"v-show="layout=='grade'"><img :src="item.image.small" style="width:30%;"><span v-text="item.title" style="width:65%;"></span></a>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    var array = [{
+        "title": "What You Need To Know About CSS Variables",
+        "url": "http://tutorialzine.com/2016/03/what-you-need-to-know-about-css-variables/",
+        "image": {
+            "large": "http://cdn.tutorialzine.com/wp-content/uploads/2016/03/css-variables.jpg",
+            "small": "http://cdn.tutorialzine.com/wp-content/uploads/2016/03/css-variables-150x150.jpg"
+        }
+    },
+        {
+            "title": "Freebie: 4 Great Looking Pricing Tables",
+            "url": "http://tutorialzine.com/2016/02/freebie-4-great-looking-pricing-tables/",
+            "image": {
+                "large": "http://cdn.tutorialzine.com/wp-content/uploads/2016/02/great-looking-pricing-tables.jpg",
+                "small": "http://cdn.tutorialzine.com/wp-content/uploads/2016/02/great-looking-pricing-tables-150x150.jpg"
+            }
+        },
+        {
+            "title": "20 Interesting JavaScript and CSS Libraries for February 2016",
+            "url": "http://tutorialzine.com/2016/02/20-interesting-javascript-and-css-libraries-for-february-2016/",
+            "image": {
+                "large": "http://cdn.tutorialzine.com/wp-content/uploads/2016/02/interesting-resources-february.jpg",
+                "small": "http://cdn.tutorialzine.com/wp-content/uploads/2016/02/interesting-resources-february-150x150.jpg"
+            }
+        },
+        {
+            "title": "Quick Tip: The Easiest Way To Make Responsive Headers",
+            "url": "http://tutorialzine.com/2016/02/quick-tip-easiest-way-to-make-responsive-headers/",
+            "image": {
+                "large": "http://cdn.tutorialzine.com/wp-content/uploads/2016/02/quick-tip-responsive-headers.png",
+                "small": "http://cdn.tutorialzine.com/wp-content/uploads/2016/02/quick-tip-responsive-headers-150x150.png"
+            }
+        },
+        {
+            "title": "Learn SQL In 20 Minutes",
+            "url": "http://tutorialzine.com/2016/01/learn-sql-in-20-minutes/",
+            "image": {
+                "large": "http://cdn.tutorialzine.com/wp-content/uploads/2016/01/learn-sql-20-minutes.png",
+                "small": "http://cdn.tutorialzine.com/wp-content/uploads/2016/01/learn-sql-20-minutes-150x150.png"
+            }
+        },
+        {
+            "title": "Creating Your First Desktop App With HTML, JS and Electron",
+            "url": "http://tutorialzine.com/2015/12/creating-your-first-desktop-app-with-html-js-and-electron/",
+            "image": {
+                "large": "http://cdn.tutorialzine.com/wp-content/uploads/2015/12/creating-your-first-desktop-app-with-electron.png",
+                "small": "http://cdn.tutorialzine.com/wp-content/uploads/2015/12/creating-your-first-desktop-app-with-electron-150x150.png"
+            }
+        }];
+    var app=new Vue({
+
+        el:'#all',
+        data:{
+
+            imgSrc:array,
+            layout:'list'
+        },
+        methods:{
+            jiugongge:function (one) {
+                this.layout=one;
+            }
+        }
+
+    });
+
+
+
+</script>
+</html>
