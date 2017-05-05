@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="node_modules/vue/dist/vue.js"></script>
+</head>
+<style>
+        #app{
+            width: 500px;
+            height:600px;
+            margin: 0 auto;
+            background-color:rgb(66,145,174);
+        }
+        #title{
+            font-size: 52px;
+            color: white;
+            text-align: center;
+            padding-top: 40px;
+
+        }
+        #comment{
+            width: 350px;
+            height: 60px;
+            margin: 0 auto;
+            background-color: pink;
+            margin-top: 10px;
+        }
+
+
+
+
+        #comment span{
+            display: block;
+            padding-top: 30px;
+            float: left;
+            margin-left: 50px;
+        }
+        #one{
+            float: right;
+            margin-top: 30px;
+            margin-right: 40px;
+        }
+
+        #two{
+            margin: 0 auto;
+            width: 350px;
+            border-bottom: 2px solid white;
+            margin-top: 30px;
+
+        }
+        #three{
+            width: 350px;
+            height:100px;
+            margin: 0 auto;
+            margin-top: 20px;
+        }
+        #three span{
+            float: left;
+            margin-left: 50px;
+        }
+        #four{
+            float: right;
+            margin-right:40px;
+        }
+        .five{
+            background-color:green !important;
+        }
+
+</style>
+
+
+<body>
+        <div id="app">
+            <p id="title">Services</p>
+
+            <div id="comment" v-for="(item,index) in items" @click="Myclick(item.price,index)" :class="{five:item.active}">
+                <span v-text="item.name"></span>
+                <div  id="one" v-text="item.price"></div>
+
+            </div>
+            <div id="two"></div>
+            <div id="three">
+                <span>Total</span>
+                <div id="four" >{{sum|money}}</div>
+            </div>
+        </div>
+</body>
+
+        <script>
+            Vue.filter('money',function (sum) {
+                return '¥'+sum;
+            });
+
+            var services = [
+                {
+                    name: 'Web Development',
+                    price: 300,
+                    active:false
+                },{
+                    name: 'Design',
+                    price: 400,
+                    active:false
+                },{
+                    name: 'Integration',
+                    price: 250,
+                    active:false
+                },{
+                    name: 'Training',
+                    price: 220,
+                    active:false
+                }
+            ]
+            var vm=new Vue({
+                el:"#app",
+
+                data:{
+                    items:services,
+                    sum:0
+
+                },
+                methods:{
+                    Myclick:function (price,index) {
+                        this.items[index].active=!this.items[index].active;
+                        if(this.items[index].active==true){
+                            this.sum+=price;
+                        }else {
+                            this.sum-=price;
+                        }
+
+                    }
+
+                }
+
+            })
+
+
+
+
+
+        </script>
+
+
+
+</html>
